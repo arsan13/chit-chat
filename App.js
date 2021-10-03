@@ -1,8 +1,8 @@
 import React from 'react';
-import Home from './src/components/Home';
+import Index from './src/Index';
 
 const App = () => {
-  return <Home />;
+  return <Index />;
 };
 
 export default App;
