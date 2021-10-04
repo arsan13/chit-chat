@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -8,22 +8,30 @@ import {
   StyleSheet,
   ScrollView,
 } from 'react-native';
+import firebase from '../utils/Firebase';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
-// import {AuthContext} from '../navigation/AuthProvider';
 
 const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-  // const {login} = useContext(AuthContext);
+  async function handleSubmit() {
+    try {
+      await firebase.auth().signInWithEmailAndPassword(email, password);
+      console.log('Logged in');
+      navigation.navigate('Messages');
+    } catch (e) {
+      console.log('Error logging in' + e);
+    }
+  }
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Image
+      {/* <Image
         source={require('../../assets/rn-social-logo.png')}
         style={styles.logo}
-      />
+      /> */}
       <Text style={styles.text}>Chit Chat</Text>
 
       <FormInput
@@ -46,8 +54,8 @@ const LoginScreen = ({navigation}) => {
 
       <FormButton
         buttonTitle="Sign In"
-        // onPress={() => login(email, password)}
-        onPress={() => navigation.navigate('Messages')}
+        onPress={() => handleSubmit()}
+        // onPress={() => navigation.navigate('Messages')}
       />
 
       <TouchableOpacity style={styles.forgotButton} onPress={() => {}}>

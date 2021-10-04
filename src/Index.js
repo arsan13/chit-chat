@@ -15,33 +15,37 @@ const Index = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {!isLoggedIn && (
+        {!isLoggedIn ? (
           <>
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Signup" component={SignupScreen} />
           </>
+        ) : (
+          <>
+            <Stack.Screen
+              name="Messages"
+              component={MessagesScreen}
+              options={{
+                headerLeft: null,
+                headerRight: () => (
+                  <Button
+                    title="logout"
+                    onPress={() => {
+                      setIsLoggedIn(false);
+                    }}
+                  />
+                ),
+              }}
+            />
+            <Stack.Screen
+              name="Chat"
+              component={ChatScreen}
+              options={({route}) => ({
+                title: route.params.userName,
+              })}
+            />
+          </>
         )}
-        <Stack.Screen
-          name="Messages"
-          component={MessagesScreen}
-          options={{
-            headerRight: () => (
-              <Button
-                title="logout"
-                onPress={() => {
-                  setIsLoggedIn(false);
-                }}
-              />
-            ),
-          }}
-        />
-        <Stack.Screen
-          name="Chat"
-          component={ChatScreen}
-          options={({route}) => ({
-            title: route.params.userName,
-          })}
-        />
       </Stack.Navigator>
     </NavigationContainer>
   );

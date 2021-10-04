@@ -10,10 +10,9 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@react-native-firebase/app": "^12.8.0",
-    "@react-native-firebase/auth": "^12.8.0",
     "@react-navigation/native": "^6.0.4",
     "@react-navigation/native-stack": "^6.2.2",
+    "firebase": "^9.1.1",
     "react": "17.0.2",
     "react-native": "0.65.1",
     "react-native-gifted-chat": "^0.16.3",
