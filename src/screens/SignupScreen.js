@@ -14,18 +14,12 @@ const SignupScreen = ({navigation}) => {
     if (password != confirmPassword) return;
     try {
       await firebase.auth().createUserWithEmailAndPassword(email, password);
-      console.log(email + ' ' + password);
+      // console.log(email + ' ' + password);
       navigation.navigate('Login');
     } catch (e) {
       console.log('Register Failed' + e);
     }
   }
-
-  // useEffect(() => {
-  //   firebase.auth().onAuthStateChanged(user => {
-  //     console.log(user);
-  //   });
-  // });
 
   return (
     <View style={styles.container}>

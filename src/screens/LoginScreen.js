@@ -19,11 +19,10 @@ const LoginScreen = ({navigation, setLog}) => {
   async function handleSubmit() {
     try {
       await firebase.auth().signInWithEmailAndPassword(email, password);
-      console.log('Logged in');
+      // console.log('Logged in');
       setLog();
-      // navigation.navigate('Messages');
     } catch (e) {
-      console.log('Error logging in' + e);
+      console.log('Error logging in ' + e);
     }
   }
 
@@ -53,11 +52,7 @@ const LoginScreen = ({navigation, setLog}) => {
         secureTextEntry={true}
       />
 
-      <FormButton
-        buttonTitle="Sign In"
-        onPress={() => handleSubmit()}
-        // onPress={() => navigation.navigate('Messages')}
-      />
+      <FormButton buttonTitle="Sign In" onPress={() => handleSubmit()} />
 
       <TouchableOpacity style={styles.forgotButton} onPress={() => {}}>
         <Text style={styles.navButtonText}>Forgot Password?</Text>

@@ -1,57 +1,22 @@
 import React, {useState} from 'react';
-import {Button} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import MessagesScreen from './screens/MessagesScreen';
-import ChatScreen from './screens/ChatScreen';
-import LoginScreen from './screens/LoginScreen';
-import SignupScreen from './screens/SignupScreen';
-
-const Stack = createNativeStackNavigator();
+import AuthStack from './navigation/AuthStack';
+import MessageStack from './navigation/MessageStack';
 
 const Index = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-  };
-
-  const setLog = () => {
-    setIsLoggedIn(true);
+  const setLogin = () => {
+    setIsLoggedIn(!isLoggedIn);
   };
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        {!isLoggedIn ? (
-          <>
-            <Stack.Screen name="Login">
-              {props => <LoginScreen setLog={setLog} {...props} />}
-            </Stack.Screen>
-            <Stack.Screen name="Signup" component={SignupScreen} />
-          </>
-        ) : (
-          <>
-            <Stack.Screen
-              name="Messages"
-              component={MessagesScreen}
-              options={{
-                headerLeft: null,
-                headerRight: () => (
-                  <Button title="logout" onPress={handleLogout} />
-                ),
-              }}
-            />
-            <Stack.Screen
-              name="Chat"
-              component={ChatScreen}
-              options={({route}) => ({
-                title: route.params.userName,
-              })}
-            />
-          </>
-        )}
-      </Stack.Navigator>
+      {!isLoggedIn ? (
+        <AuthStack setLog={setLogin} />
+      ) : (
+        <MessageStack setLog={setLogin} />
+      )}
     </NavigationContainer>
   );
 };
