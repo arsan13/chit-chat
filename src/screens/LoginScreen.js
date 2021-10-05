@@ -12,7 +12,7 @@ import firebase from '../utils/Firebase';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 
-const LoginScreen = ({navigation}) => {
+const LoginScreen = ({navigation, setLog}) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -20,7 +20,8 @@ const LoginScreen = ({navigation}) => {
     try {
       await firebase.auth().signInWithEmailAndPassword(email, password);
       console.log('Logged in');
-      navigation.navigate('Messages');
+      setLog();
+      // navigation.navigate('Messages');
     } catch (e) {
       console.log('Error logging in' + e);
     }

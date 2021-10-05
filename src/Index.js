@@ -12,12 +12,22 @@ const Stack = createNativeStackNavigator();
 const Index = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
+
+  const setLog = () => {
+    setIsLoggedIn(true);
+  };
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
         {!isLoggedIn ? (
           <>
-            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Login">
+              {props => <LoginScreen setLog={setLog} {...props} />}
+            </Stack.Screen>
             <Stack.Screen name="Signup" component={SignupScreen} />
           </>
         ) : (
@@ -28,12 +38,7 @@ const Index = () => {
               options={{
                 headerLeft: null,
                 headerRight: () => (
-                  <Button
-                    title="logout"
-                    onPress={() => {
-                      setIsLoggedIn(false);
-                    }}
-                  />
+                  <Button title="logout" onPress={handleLogout} />
                 ),
               }}
             />
