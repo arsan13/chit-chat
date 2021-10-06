@@ -20,7 +20,7 @@ const LoginScreen = ({navigation, setLog}) => {
     try {
       await firebase.auth().signInWithEmailAndPassword(email, password);
       // console.log('Logged in');
-      setLog();
+      setLog(email);
     } catch (e) {
       console.log('Error logging in ' + e);
     }

@@ -6,12 +6,14 @@ import ChatScreen from '../screens/ChatScreen';
 
 const Stack = createNativeStackNavigator();
 
-const MessageStack = ({navigation, setLog}) => {
+const MessageStack = ({navigation, setLog, emailId}) => {
   return (
     <Stack.Navigator>
       <Stack.Screen
         name="Messages"
-        component={MessagesScreen}
+        component={({navigation}) => (
+          <MessagesScreen navigation={navigation} emailId={emailId} />
+        )}
         options={{
           // headerLeft: null,
           headerRight: () => <Button title="logout" onPress={setLog} />,
@@ -19,9 +21,11 @@ const MessageStack = ({navigation, setLog}) => {
       />
       <Stack.Screen
         name="Chat"
-        component={ChatScreen}
+        component={({navigation, route}) => (
+          <ChatScreen navigation={navigation} route={route} emailId={emailId} />
+        )}
         options={({route}) => ({
-          title: route.params.userName,
+          title: route.params.chatId.name,
         })}
       />
     </Stack.Navigator>
