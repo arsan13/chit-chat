@@ -15,7 +15,6 @@ const MessageStack = ({navigation, setLog, emailId}) => {
           <MessagesScreen navigation={navigation} emailId={emailId} />
         )}
         options={{
-          // headerLeft: null,
           headerRight: () => <Button title="logout" onPress={setLog} />,
         }}
       />

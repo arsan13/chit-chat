@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {
-  Button,
   Text,
   TextInput,
   TouchableOpacity,
@@ -63,11 +62,8 @@ const ChatScreen = ({navigation, route, emailId}) => {
           flex: 0.8,
           flexDirection: 'row',
           backgroundColor: Springgreen,
-          // margin: 10,
-
           minHeight: 24,
         }}>
-        {/* <Button title={chatId.name} color="black" /> */}
         <Avatar
           rounded
           titleStyle={{color: Springgreen, fontSize: 20}}
@@ -90,14 +86,7 @@ const ChatScreen = ({navigation, route, emailId}) => {
           data={allMessages}
           scrollToOverflowEnabled={true}
           style={{paddingBottom: 40, minHeight: 'auto'}}
-          // inverted={true}
-          // inverted={-1}          refreshControl={refresh}
-
-          // contentContainerStyle={{flexDirection: 'column-reverse'}}
-          // initialScrollIndex={allMessages.length - 1}
-          // automaticallyAdjustContentInsets={true}
           renderItem={({item}) => {
-            // console.log(item);
             if (item && item.sender == emailId.split('@')[0])
               return (
                 <View
@@ -194,13 +183,7 @@ const ChatScreen = ({navigation, route, emailId}) => {
               justifyContent: 'center',
             }}>
             {' '}
-            {/* <AiOutlineSend /> */}
-            <Icon
-              // size={30}
-              name="paper-plane"
-              type="font-awesome"
-              color={'white'}
-            />
+            <Icon name="paper-plane" type="font-awesome" color={'white'} />
           </Text>
         </TouchableOpacity>
       </View>

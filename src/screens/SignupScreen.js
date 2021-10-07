@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, TouchableOpacity, Platform, StyleSheet} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
-import firebase from '../utils/Firebase';
-// import SocialButton from '../components/SocialButton';
 
 const SignupScreen = ({navigation}) => {
   const [email, setEmail] = useState();
@@ -14,7 +12,6 @@ const SignupScreen = ({navigation}) => {
     if (password != confirmPassword) return;
     try {
       await firebase.auth().createUserWithEmailAndPassword(email, password);
-      // console.log(email + ' ' + password);
       navigation.navigate('Login');
     } catch (e) {
       console.log('Register Failed' + e);

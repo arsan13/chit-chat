@@ -19,7 +19,6 @@ const LoginScreen = ({navigation, setLog}) => {
   async function handleSubmit() {
     try {
       await firebase.auth().signInWithEmailAndPassword(email, password);
-      // console.log('Logged in');
       setLog(email);
     } catch (e) {
       console.log('Error logging in ' + e);
